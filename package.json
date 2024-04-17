@@ -1,0 +1,26 @@
+{
+  "name": "food-react-app",
+  "version": "1.0.0",
+  "description": "Food Order Application",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest",
+    "start":"parcel index.html",
+    "build":"parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManvithaBattula/Food_ordering_React_App.git"
+  },
+  "author": "Manvitha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManvithaBattula/Food_ordering_React_App/issues"
+  },
+  "homepage": "https://github.com/ManvithaBattula/Food_ordering_React_App#readme",
+  "dependencies": {
+    "parcel": "^2.12.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
