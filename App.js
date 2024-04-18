@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import BodyComponent from './src/components/BodyComponent';
+import HeaderComponent from './src/components/HeaderComponent';
 
-const HeaderComponent = () => {
-    return(
-        <div className="header-component">
-            <img src="https://1000logos.net/wp-content/uploads/2021/05/Swiggy-emblem.png" className="company-logo"></img>
-        </div>
-    )
-}
 
 const AppContainer = () => {
     return(
-        <div>
+        <div className='app-container'>
             <HeaderComponent />
+            <BodyComponent />
         </div>
     )
 }
