@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 const RestaurantMenu = () => {
     const[restaurantInfo, setRestaurantInfo] = useState();
     const {resId} = useParams();
-    console.log('inside ',resId)
 
     useEffect(() => {
         fetchRestaurantsInfo();
