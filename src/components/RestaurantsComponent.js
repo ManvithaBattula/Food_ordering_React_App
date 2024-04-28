@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { IMG_URL } from "../common/constants";
 import ShimmerComponent from "./ShimmerComponent";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../common/useOnlineStatus";
 
 const RestaurantsComponent = () => {
     const [restaurantsList, setRestaurantsList] = useState([])
     const [filteredList, setFilteredList] = useState([]);
     const [searchRestaurants, setSearchRestaurants] = useState();
+    const onlineStatus = useOnlineStatus();
 
     const fetchRestaurantsList = async () => {
         let restaurantsData = await fetch(
@@ -24,25 +26,28 @@ const RestaurantsComponent = () => {
         fetchRestaurantsList();
     },[])
 
+    if(onlineStatus === false){
+        return <h1>You are offline. Please check your internet.</h1>
+    }
+
     if(restaurantsList?.length === 0 ){
         return <ShimmerComponent />
     }
     return (
-        <div className="restaurant-component">
-            <h2>Restaurants with online food delivery in Hyderabad</h2>
-            <input type="text" value={searchRestaurants} onChange={(e) => {
+        <div className="mx-40">
+            <h2 className="py-4 ">Restaurants with online food delivery in Hyderabad</h2>
+            <input type="text" className="border-2 mr-4"value={searchRestaurants} onChange={(e) => {
                 setSearchRestaurants(e.target.value);
             }}></input>
             <button onClick={() => {
                 const filteredRestaurantsList = restaurantsList.filter(item => item?.info?.name.toUpperCase().includes(searchRestaurants.toUpperCase()));
-                console.log(filteredRestaurantsList)
                 setFilteredList(filteredRestaurantsList)
             }}>Search</button>
-            <div  className="res-image">
+            <div  className="flex flex-wrap">
             {filteredList.map((item) => {
                 const itemSource = IMG_URL + item?.info?.cloudinaryImageId
-                return <Link to={"/restaurant/"+item?.info?.id}><div className="item-container">
-                <img src={itemSource} className="item-image"></img>
+                return <Link to={"/restaurant/"+item?.info?.id}><div className="p-4 w-40">
+                <img src={itemSource} className="w-40"></img>
                 <h4 className="restaurant-header">{item?.info?.name}</h4>
                 <div className="restaurant-container">
                     <h5 className="restaurant-header">{item?.info?.avgRating}</h5>
